@@ -100,6 +100,106 @@ var Draggable = function(options) {
         handler: ""                      //滑动的元素
     };
     var settings = $.extend(defaults, options);
+    var $container = $(settings.container);
+    var container = $container.get(0);
+    var hasContainer = $container.length  == 1 ? true : false;
+    if (hasContainer) {
+        console.log('hasContainer');
+        var $handler = $container.find(settings.handler);
+    } else {
+        var $handler = $(settings.handler);
+    }
+    var handler = $handler.get(0);
+
+    var oldLeft, oldTop, mouseX, mouseY, oldWidth, oldHeight, isDown = false;
+    var containerWidth = hasContainer ? $container.width() : window.innerWidth;
+    var containerHeight = hasContainer ? $container.height() : window.innerHeight;
+    var containerLeft = hasContainer ? getPosition(container).left : 0;
+    var containerTop = hasContainer ? getPosition(container).top : 0;
+     //触点left,top范围。保证移动范围是container的宽高
+    var dx = Math.floor($handler.width() / 2), dy = Math.floor($handler.height() / 2);
+    var range = {
+        left: {max: containerWidth - dx, min: -dx},
+        top: {max: containerHeight - dy, min: -dy}
+    };
+
+    var lastPos, hasMoved = false;
+
+    console.log(range);
+
+    $handler.on("mousedown", function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        isDown = true;
+        var position = getPosition(this, this.parentNode);
+        oldLeft = position.left;
+        oldTop = position.top;
+        $(this).css({
+            position: "absolute",
+            left: oldLeft,
+            top: oldTop,
+            margin: 0
+        });
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        oldWidth = $handler.width();
+        oldHeight = $handler.height();
+        if ($.isFunction(settings.onStart)) {
+            settings.onStart.call(handler, {left: oldLeft, top: oldTop}, {left: dx, top: dy }, container, {width: containerWidth, height: containerHeight});
+        }
+    });
+    $(document).on("mousemove mouseup", function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        if (e.type == "mouseup") {
+            isDown = false;
+            if (hasMoved && $.isFunction(settings.onEnd)){
+                settings.onEnd.call(handler, lastPos, {left: dx, top: dy}, container, {width: containerWidth, height: containerHeight});
+            }
+        } else if (e.type === "mousemove") {
+            if (! isDown) {
+                return;
+            }
+            hasMoved = true;
+            var currentLeft = oldLeft + e.pageX - mouseX;
+            var currentTop = oldTop + e.pageY - mouseY;
+            currentLeft = Math.min(currentLeft, range.left.max);
+            currentLeft = Math.min(currentLeft, range.left.min);
+            currentTop = Math.min(currentTop, range.top.max);
+            currentTop = Math.max(currentTop, range.top.min);
+
+            if(settings.moveX === true && setttings.moveY === false) {
+                $handler.css({
+                    left: currentLeft
+                });
+            } else if (settings.moveX === false && settings.moveY === true) {
+                $handler.css({
+                    top: currentTop
+                });
+            } else {
+                $handler.css({
+                    top: currentTop,
+                    left: currentLeft
+                });
+            }
+            lastPos = {left: currentLeft, top: currentTop};
+            if( $.isFunction(settings.onMove)) {
+                settings.onMove.call(handler, {left: oldLeft, top: oldTop}, {left: dx, top: dy }, container, {width: containerWidth, height: containerHeight});
+            }
+        }
+    });
+    var getPosition = function(elem, parent) {
+        var x = 0, y = 0, stop = null;
+        if (parent) {
+            stop = parent;
+        }
+        while (elem !== stop ) {
+            x += elem.offsetLeft;
+            y += elem.offsetTop;
+            elem = elem.offsetParent;
+        }
+        return {left: x, top: y};
+    }
 };
 
 
