@@ -7,9 +7,9 @@
 该函数用来获得色轮任意一度的颜色，色轮就是H，hue色相，取值0-359
  */
 function getHcolor(top, height){
-    var oneHeight = height / 6;
+    var oneHeight = height / 6;                                                        //色轮有个6个阶段的颜色变化
     var d = 0, rgbStr;
-    if (top < 1 * oneHeight) {
+    if (top < 1 * oneHeight) {                                                           //以下6个条件语句对应6个颜色变化阶段
         d = (top / oneHeight) * 255;
         rbgStr = "rgb(255, 0, " + Math.round(d) + ")";
 
@@ -35,14 +35,10 @@ function getHcolor(top, height){
     }
     return rgbStr;
 }
-/*
-S是 saturation饱和度，B是Brightnesss明度，或者是Value
-这个函数通过选中的点距离容器边框的距离来确定饱和度和明度，
-其中从左到右饱和度0~100，从上到下透明度从100~0
- */
 
 /*
-将HSB(V)转换为RGB，0 <= H < 1, 0 <= S, V <= 1，算法来自https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4,维基百科的解释
+将HSB(V)转换为RGB，0 <= H < 1, 0 <= S, V <= 1，
+算法来自https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4,维基百科的解释
  */
 function hsv2rgb(H, S, V) {
     var R, G, B;
@@ -201,7 +197,60 @@ var Draggable = function(options) {
         return {left: x, top: y};
     }
 };
+/*
+S是 saturation饱和度，B是Brightnesss明度，或者是Value
+这个函数通过选中的点距离容器边框的距离来确定饱和度和明度，
+其中从左到右饱和度0~100，从上到下透明度从100~0
+ */
+new Draggable({
+    contianer: "#color-hs",
+    handler: "#color-hs-value",
+    moveX: true,
+    moveY: true,
+    onMove: function(elemPos, dPos, container, containerWH) {
+        S  = (100 / containerWH.width) *(elemPos.left + dPos.left);
+        $showS.text(S);
+        B = 100 - (100/containerWH.height) * (elemPos.top + dPos.top);
+        $showB.text(B);
+        var rgb = hsvrgb(H/360, S/100, B/100);
+        var rgbStr = "(" + rgb.r  + ", " + rgb.g + ", " + rgb.b + ")";
+        $showRGB.text(rgbStr);
+        $preview.css("background-color", "rgb" + rgbStr);
+        $showHex.text("#" + rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16));
+    }
+});
 
+/*
+获取色盘的色相Hue
+ */
+new Draggable({
+    container: "#color-1",
+    handler: "#color-1-value",
+    moveY: true,
+    onStart: function(elemPos, dPos, container, containerWH) {
+        var Hcolor = getHcolor(elemePos.top + dPos.top, containerWH.height);
+        H = 360 - (360 / containerWH.height) * (elemPos.top + dPos.top);
+        if (H === 360) {
+            H = 0;
+        }
+        $showH.text(H);
+        $slWrap.css("background-color", Hcolor);
+    },
+    onMove: function(elemPos, dPos, container, containerWH) {
+        var Hcolor = getHcolor(elemPos.top + dPos.top, containerWH.height);
+        H = 360 - (360 / containerWH.height) * (elemPos.top + dPos.top);
+        if(H == 360) {
+            H = 0;
+        }
+        $showH.text(H);
+        var rgb = hsv2rgb(H/360, S/100, L/100);
+        var rgbStr = "(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+        $showRGB.text(rgbStr);
+        $preview.css("background-color", "rgb" + rgbStr);
+        $slWrap.css("background-color", Hcolor);
+        $showHex.text("#" + rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16));
+    }
+});
 
 
 
