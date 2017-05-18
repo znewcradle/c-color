@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+         <title>Pick Color</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入 Bootstrap -->
+        <link href="style/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+        <!--  引入自定义CSS文件 -->
+        <link href="style/main.css" rel="stylesheet" >
+    </head>
+    <body>
+    <div id="wrap">
+        <div>
+            <div id="color-hs" style="background-color: rgb(255, 0, 24);">
+                <img src="images/bgGradient.png">
+                <span class="color-hs-value" id="color-hs-value"></span>
+            </div>
+            <div id="color-v">
+                <img src="images/hueBar.png">
+                <div id="color-v-value">
+                    <span class="value value-r"></span>
+                    <span class="value value-l"></span>
+                </div>
+            </div>
+        </div>
+        <div class="color-show">
+            <div>
+                H：<span class="color-show-h"></span>
+                S：<span class="color-show-s"></span>
+                V：<span class="color-show-v"></span>
+            </div>
+            <div>
+                RGB：<span class="color-show-rgb"></span>
+            </div>
+            <div>
+                十六进制：<span class="color-show-shiliu"></span>
+            </div>
+        </div>
+        <div id="color-preview"></div>
+    </div>
+    <!-- 引入jQuery -->
+    <script src="script/jquery-3.2.1.min.js"></script>
+    <!-- 引入bootstrap插件 -->
+    <script src="style/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <!-- 引入color.js -->
+    <script src="script/color.js" ></script>
+    </body>
+</html>
