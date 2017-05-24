@@ -7,6 +7,10 @@ body {
     font-family: "Lato", "Helvetica", Helvetica, sans-serif;
     color: #31333F;
 }
+a, a:hover, a:visited {
+    text-decoration: none;
+    -webkit-text-decoration-color: #31333F;
+}
 
 header {
     background-color: #eeeeee;
@@ -113,8 +117,8 @@ li.underline:nth-child(4):hover::after{
 }
 
 
-div#main {
-    height: 600px;
+div.main {
+    height: 1100px;
     width: 90%;
     background-color: #ffffff;
     position: relative;
@@ -127,7 +131,19 @@ div.color-header {
     display: -webkit-flex;
     flex-direction: row;
     border-bottom: 1px solid #eeeeee;
-    height: 20%;
+    height: 10%;
+    max-height: 150px;
+}
+/*fix the header*/
+div.color-header.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 10%;
+    max-height: 120px;
+    z-index: 10;
+    background-color: #ffffff;
 }
 div.return-top {
     width: 8%;
@@ -148,7 +164,7 @@ div.color-demo {
     display: flex;
     display: -webkit-flex;
     align-self: center;
-    margin: 0 3rem;
+    margin: 0 2.2rem;
 }
 div.color-data {
     display: flex;
@@ -159,7 +175,15 @@ div.color-data {
     margin: 0 2rem;
 }
 div.color-data div{
-    margin: 0 1rem;
+    margin: 0;
+    text-align: left;
+    width: 20rem;
+}
+div.color-data div.color-hex {
+    width: 18rem;
+}
+div.color- data div.color-rgb {
+    width: 19rem;
 }
 div.color-data h5{
     display: inline-block;
@@ -236,12 +260,403 @@ div.color-item span.color-unlock:hover {
     margin: -3px 0;
     box-shadow: 0 0.2rem 0 #F7C8DA;
 }
-footer {
+
+/**
+For the main color selecting area
+ */
+#wrap {
+    position: relative;
+    margin-top: 3%;
+}
+
+div#color-hs {
+    width: 460px;
+    height: 400px;
+    display: inline-block;
+    position: absolute;
+    left: 10%;
+}
+
+div#color-hs .color-hs-value {
+    display: inline-block;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    background: url("../images/circle-selected-black.gif");
+    width: 11px;
+    height: 11px;
+    cursor: crosshair
+}
+
+#color-v {
+    width: 40px;
+    height: 400px;
+    display: inline-block;
+    position: absolute;
+    left: 52%;
+}
+
+#color-v-value {
+    position: absolute;
+    display: inline-block;
+    height: 9px;
+    top: 0;
+    left: -9px;
+    cursor: pointer;
+}
+
+#color-v-value .value {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    position: absolute;
+}
+
+#color-v-value .value-l {
+    background: url("../images/arrow-l.gif") no-repeat;
+}
+
+#color-v-value .value-r {
+    background: url("../images/arrow-r.gif") no-repeat;
+    left: 48px;
+}
+
+div#color-preview {
+    width: 160px;
+    height: 86px;
+    position: absolute;
+    left: 60%;
+    top: 26%;
+    display: inline-block;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+div#color-detail {
+    border: 0.12rem solid #eeeeee;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    position: absolute;
+    left: 60%;
+    margin-top: 7.19%;
+    width: 160px;
+    height: 316px;
+}
+.color-show {
+    margin-top: 20px;
+}
+.color-show span {
+    margin-right: 5px;
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+    color: #0f0f0f;
+}
+div.color-show div {
+    font-size: large;
+    font-weight: bold;
+    color: #c3c3c3;
+    margin-top: 0.3rem;
+}
+div.color-show div.hex-value, div.color-show div.hsv-value, div.color-show div.rgb-value {
+    margin-top: 1.25rem;
+}
+span.color-show-hex {
+    text-transform: uppercase;
+}
+/**
+for the use guide
+ */
+div.user-guide {
+    position: absolute;
+    left: 75%;
+    text-align: left;
+    margin: 0 5rem;
+}
+div.user-guide section.guide-section {
+    color: #c3c3c3;
+    margin-bottom: 3.6rem;
+}
+div.user-guide section.guide-section h5 {
+    font-weight: bold;
+}
+span.guide-lock {
+    background-image: url(../images/button-lock.svg);
+    width: 20px;
+    height: 18px;
+    background-size: 20px 18px;
+    display: inline-block;
+}
+span.guide-unlock {
+    background-image: url(../images/button-unlock.svg);
+    width: 24px;
+    height: 18px;
+    background-size: 20px 18px;
+    display: inline-block;
+}
+
+div.guide-content svg.button-svg {
+    fill: #c3c3c3;
+    stroke: #c3c3c3;
+    width: 16px;
+    height: 16px;
+}
+
+/**
+for the color recommending part
+ */
+div.recommend {
+    position: relative;
+    top: 38%;
+    text-align: left;
+    left: 10%;
+    max-width: 60rem;
+    color: #a1a1a1;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+div.recommend>div{
+    display: inline-block;
+}
+div.color-dropdown {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #eeeeee;
+    border-radius: 0.275rem;
+    width: 16rem;
+    height: 4rem;
+    vertical-align: middle;
+    padding: 0.8rem 1rem;
+}
+div.color-dropdown span.caret {
+    color: #a3a3a3;
+    margin-left: 50px;
+    width: 6px;
+    height: 6px;
+}
+div.color-dropdown-content {
+    display: none;
+    background-color: #ffffff;
+    max-width: 60rem;
+    width: 16rem;
+    border: 1px solid #eeeeee;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    position: relative;
+    left: -1rem;
+    border-top: none;
+    z-index: 8;
+}
+div.color-dropdown-content ul{
+    padding: 0;
+}
+div.color-dropdown-content ul li {
+    list-style: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 0.8rem 1rem;
+}
+div.color-dropdown-content ul li:nth-child(1) {
+    margin-top: 0.3rem;
+}
+div.color-dropdown-content ul li:hover{
+    color: #0f0f0f;
+}
+div.color-dropdown:hover div.color-dropdown-content {
+    display: block;
+}
+div.export {
+    margin-left: 5rem;
+}
+div.export svg {
+    fill: #eeeeee;
+}
+div.export svg:hover{
+    fill: #0f0f0f;
+    margin-left: 0.3rem;
+}
+div.re-colors {
+    position: absolute;
+    left: 0;
+    top: 155%;
+}
+div.re-colors div.color-tabs {
+    width: 160px;
+    border: 1px solid #eeeeee;
+    border-radius: 0.5rem;
+    height: 160px;
+    display: inline-block;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+div.color-tabs div.co-tab {
     width: 100%;
-    height: 200px;
+    height: 85px;
+    background-color: red;
+    cursor: pointer;
+}
+div.color-tabs div[class^="co-tabs-"]{
+    color: #0f0f0f;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 0.5rem;
+    margin: 1rem;
+    text-transform: uppercase;
+}
+
+/*****
+for the recommend-color.html
+ */
+header.recommend {
+    height: auto;
+}
+/**for the color blocks*/
+div.color-blocks {
+    position: absolute;
+    top: 9.5%;
+    left: 0;
+    width: 100%;
+    height: 90.5%;
+    overflow:hidden;
+}
+div.cblock {
+    width: 20%;
+    height: 25%;
+    float: left;
+    font-size: 1.485rem;
+    font-weight: 500;
+    color: #0f0f0f;
+}
+div.cblock.explaination label{
+    position: relative;
+    margin-top: 10%;
+    font-size: 1.585rem;
+}
+div.cblock div.inner-cblock{
+    width: 100%;
+    height: 100%;
+    color: white;
+    position: relative;
+}
+div.cblock div.inner-cblock:hover {
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+    -ms-transform: scale(0.9, 0.9);
+    -webkit-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
+}
+div.cblock div.inner-cblock label {
+    position: static;
+    margin-top: 10%;
+}
+div.cblock div.inner-cblock svg {
+    fill: rgba(222, 222, 222, 0.5);
+    left: 82%;
+    top: 69%;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    position: absolute;
+}
+div.cblock div.inner-cblock.svg-click svg {
+     -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    fill: white;
+}
+
+div.re-sidebar {
+    width: 0;
+    background-color:#374046;
+    height: 90.5%;
+    position: absolute;
+    left: 50%;
+    top: 9.5%;
+    transition: width 500ms ease-in-out;
+}
+/**
+for the app demo
+ */
+div.re-sidebar div.app-demo {
+    width: 70%;
+    height: 82%;
+    position: absolute;
+    background-color: red;
+    left: 15%;
+    top: 5%;
+}
+div.app-demo div.app-header div.app-status {
+    position: absolute;
+    width: 100%;
+    height: 6%;
+    background-color: #f5e79e;
+}
+div.app-demo div.app-header div.app-toolbar {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    height: 45%;
+    background-color: #eeeeee;
+}
+div.app-demo div.app-toolbar div.app-toolbar-heading {
+    display: none;
+    position: absolute;
+}
+div.app-toolbar-heading svg.app-left-tool {
+    position: absolute;
+    top: 1.5rem;
+    left: 1rem;
+}
+div.app-toolbar-heading svg.app-right-tool {
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+}
+div.app-toolbar-heading label {
+    display: block;
+}
+div.app-toolbar-heading label.app-title {
+    position: relative;
+    top: 10%;
+    left: 10%;
+}
+div.app-toolbar-heading label.app-subtitle {
+    position: relative;
+    top: 15%;
+    left: 10%;
+}
+div.app-demo div.app-content {
+    top: 51%;
+    height: 49%;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    rgba(0, 0, 0, 0.84);
+}
+div.app-demo div.app-content ul.app-list{
+    /*background-color: #DADADA;*/
+}
+div.app-demo div.app-content ul.app-list li:nth-child(1){
+    list-style: none;
+    width: 100%;
+    /*background-color: #2b669a;*/
+    position: absolute;
     top: 0;
     left: 0;
-    background-color: #eeeeee;
+    height: 50%;
+    border-bottom: 1px solid #eeeeee;
+}
+div.app-demo div.app-content ul.app-list li:nth-child(2){
+    list-style: none;
+    width: 100%;
+    /*background-color: #ab669a;*/
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 50%;
 }
 
 
@@ -253,6 +668,22 @@ footer {
 
 
 
+
+
+
+
+
+
+
+
+
+footer {
+    width: 100%;
+    height: 200px;
+    top: 0;
+    left: 0;
+    background-color: #eeeeee;
+}
 
 
 

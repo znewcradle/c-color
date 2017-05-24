@@ -1,60 +1,66 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-         <title>c-color</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- 引入 Bootstrap -->
-        <link href="style/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" >
-        <!--  引入预定义CSS动态效果  -->
-        <link href="style/animate.css" rel="stylesheet" />
-        <!-- 引入main.css -->
-        <link href="style/main.css" rel="stylesheet" >
-    </head>
-    <body>
-    <header>
-        <nav id="nav">
-            <span>Logo</span>
-            <ul class="row">
-                <li class="underline li1">自选配色</li>
-                <li class="underline li2">推荐配色</li>
-                <li class="underline li3">系列配色</li>
-                <li class="underline li4">了解配色</li>
-            </ul>
-        </nav>
-        <div class="header-section">
-            <h1>Select the color you want</h1>
-        </div>
-    </header>
-    <div id="main">
-        <div class="color-header">
-            <div class="return-top">
-                <svg version="1.1" id="return-top" class="button-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="16px" viewBox="-0.5 21.5 24 16" enable-background="new -0.5 21.5 24 16" xml:space="preserve">
+<head>
+    <title>c-color</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="style/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--  引入预定义CSS动态效果  -->
+    <link href="style/animate.css" rel="stylesheet"/>
+    <!-- 引入main.css -->
+    <link href="style/main.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav id="nav">
+        <span>Logo</span>
+        <ul class="row">
+            <li class="underline li1">
+                <!--<a href="index.html">自选配色</a>-->
+                自选配色
+            </li>
+            <li class="underline li2">
+                <!--<a href="recommend-color.html">推荐配色</a>-->
+                推荐配色
+            </li>
+            <li class="underline li3">系列配色</li>
+            <li class="underline li4">了解配色</li>
+        </ul>
+    </nav>
+    <div class="header-section">
+        <h1>Select the color you want</h1>
+    </div>
+</header>
+<div class="main">
+    <div class="color-header">
+        <div class="return-top">
+            <svg version="1.1" id="return-top" class="button-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="16px" viewBox="-0.5 21.5 24 16" enable-background="new -0.5 21.5 24 16" xml:space="preserve">
                 <path fill="#C3C3C3" d="M1,37.5c-0.829,0-1.5-0.672-1.5-1.5v-4c0-0.828,0.671-1.5,1.5-1.5s1.5,0.672,1.5,1.5v4
 	                       C2.5,36.828,1.829,37.5,1,37.5z M9.5,36v-8c0-0.828-0.671-1.5-1.5-1.5S6.5,27.172,6.5,28v8c0,0.828,0.671,1.5,1.5,1.5
 	                       S9.5,36.828,9.5,36z M16.5,36v-6c0-0.828-0.672-1.5-1.5-1.5s-1.5,0.672-1.5,1.5v6c0,0.828,0.672,1.5,1.5,1.5S16.5,36.828,16.5,36z
 	                         M23.5,36V25c0-0.828-0.672-1.5-1.5-1.5s-1.5,0.672-1.5,1.5v11c0,0.828,0.672,1.5,1.5,1.5S23.5,36.828,23.5,36z">
                 </path>
             </svg>
+        </div>
+        <div class="color-demo">
+        </div>
+        <div class="color-data">
+            <div class="color-hex">
+                <h5 class="color-label">HEX</h5>
+                <span class="hex">#12ef35</span>
             </div>
-            <div class="color-demo">
+            <div class="color-rgb">
+                <h5 class="color-label">RGB</h5>
+                <span class="rgb">200, 34, 45</span>
             </div>
-            <div class="color-data">
-                <div class="color-hex">
-                    <h5 class="color-label">HEX</h5>
-                    <span class="hex">#12ef35</span>
-                </div>
-                <div class="color-rgb">
-                    <h5 class="color-label">RGB</h5>
-                    <span class="rgb">200, 34, 45</span>
-                </div>
-                <div class="color-hsv">
-                    <h5 class="color-label">HSV</h5>
-                    <span class="hsv">100, 40%, 56%</span>
-                </div>
+            <div class="color-hsv">
+                <h5 class="color-label">HSV</h5>
+                <span class="hsv">100, 40%, 56%</span>
             </div>
-            <div class="color-download">
-                <svg version="1.1" class="button-svg" data-export="palette" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        </div>
+        <div class="color-download">
+            <svg version="1.1" class="button-svg" data-export="palette" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                     <path class="fill" data-export="palette" d="M17.938,11.671l-5,4c-0.008,0.009-0.021,0.011-0.029,0.017c-0.118,0.09-0.248,0.164-0.389,0.215
 	                    c-0.024,0.011-0.049,0.017-0.075,0.023C12.303,15.971,12.155,16,12,16s-0.303-0.029-0.443-0.074
 	                    c-0.025-0.008-0.05-0.014-0.074-0.023c-0.142-0.051-0.271-0.125-0.389-0.215c-0.009-0.006-0.021-0.008-0.03-0.017l-5-4
@@ -63,44 +69,170 @@
 	                    c0-0.828-0.672-1.5-1.5-1.5S20,14.672,20,15.5V19H4v-3.5C4,14.672,3.329,14,2.5,14S1,14.672,1,15.5v4C1,20.879,2.122,22,3.5,22h17
 	                    C21.879,22,23,20.879,23,19.5z"></path>
                 </svg>
+        </div>
+        <div class="color-bar">
+            <div class="color-item">
+                <div class="color-demo-item first-item"></div>
+                <span class="islock color-unlock"></span>
             </div>
-            <div class="color-bar">
-                <div class="color-item">
-                    <div class="color-demo-item first-item"></div>
-                    <span class="color-unlock"></span>
+            <div class="color-item">
+                <div class="color-demo-item"></div>
+                <span class="islock color-lock"></span>
+            </div>
+            <div class="color-item">
+                <div class="color-demo-item"></div>
+                <span class="islock color-lock"></span>
+            </div>
+            <div class="color-item">
+                <div class="color-demo-item"></div>
+                <span class="islock color-lock"></span>
+            </div>
+            <div class="color-item">
+                <div class="color-demo-item"></div>
+                <span class="islock color-lock"></span>
+            </div>
+            <div class="color-item">
+                <div class="color-demo-item last-item"></div>
+                <span class="islock color-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div id="wrap">
+        <div>
+            <div id="color-hs" style="background-color: rgb(255, 0, 24);">
+                <img src="images/bgGradient.png" width="460" height="400">
+                <span class="color-hs-value" id="color-hs-value"></span>
+            </div>
+            <div id="color-v">
+                <img src="images/hueBar.png" width="40" height="400">
+                <div id="color-v-value">
+                    <span class="value value-r"></span>
+                    <span class="value value-l"></span>
                 </div>
-                <div class="color-item">
-                    <div class="color-demo-item"></div>
-                    <span class="color-lock"></span>
+            </div>
+        </div>
+        <div id="color-preview" class="color-label"></div>
+
+        <div id="color-detail">
+            <div class="color-show">
+                <div class="hex-value">
+                    #<span class="color-show-hex"></span>
                 </div>
-                <div class="color-item">
-                    <div class="color-demo-item"></div>
-                    <span class="color-lock"></span>
+                <div class="hsv-value">
+                    <div class="h-value">
+                        H<span class="color-show-h"></span>
+                    </div>
+                    <div class="s-value">
+                        S<span class="color-show-s"></span>
+                    </div>
+                    <div class="v-value">
+                        V<span class="color-show-v"></span>
+                    </div>
                 </div>
-                <div class="color-item">
-                    <div class="color-demo-item"></div>
-                    <span class="color-lock"></span>
-                </div>
-                <div class="color-item">
-                    <div class="color-demo-item"></div>
-                    <span class="color-lock"></span>
-                </div>
-                <div class="color-item">
-                    <div class="color-demo-item last-item"></div>
-                    <span class="color-lock"></span>
+                <div class="rgb-value">
+                    <div class="r-value">
+                        R<span class="color-show-r"></span>
+                    </div>
+                    <div class="g-value">
+                        G<span class="color-show-g"></span>
+                    </div>
+                    <div class="b-value">
+                        B<span class="color-show-b"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-        Copy Rights! Made by Znewcradle.
-    </footer>
+    <div class="user-guide">
+        <section class="guide-section">
+            <h5>选取颜色</h5>
+            <div class="guide-content">
+                <svg version="1.1" class="button-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="12px" viewBox="0 0 12 12" enable-background="new 0 0 12 12" xml:space="preserve">
+                    <path class="fill" d="M11,5H4V3c0-0.202-0.122-0.385-0.309-0.462C3.505,2.459,3.29,2.503,3.146,2.646l-3,3c-0.195,0.195-0.195,0.512,0,0.707l3,3
+	                                                C3.242,9.449,3.37,9.5,3.5,9.5c0.064,0,0.129-0.013,0.191-0.038C3.878,9.385,4,9.202,4,9V7h7c0.553,0,1-0.448,1-1S11.553,5,11,5z"></path>
+                </svg>
+                点击左侧颜色样本将其添加到您的调色板中。
+            </div>
+        </section>
+        <section class="guide-section">
+            <h5>保存颜色</h5>
+            <div class="guide-content">
+                <span class="guide-lock"></span>/<span class="guide-unlock"></span>
+                在您的调色板上保存和撤销保存颜色；下次您访问时它们会在这里
+            </div>
+        </section>
+        <section class="guide-section">
+            <h5>导出颜色</h5>
+            <div class="guide-content">
+                <svg version="1.1" class="button-svg" data-export="palette" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                    <path class="fill" data-export="palette" d="M17.938,11.671l-5,4c-0.008,0.009-0.021,0.011-0.029,0.017c-0.118,0.09-0.248,0.164-0.389,0.215
+	                        c-0.024,0.011-0.049,0.017-0.075,0.023C12.303,15.971,12.155,16,12,16s-0.303-0.029-0.443-0.074
+	                        c-0.025-0.008-0.05-0.014-0.074-0.023c-0.142-0.051-0.271-0.125-0.389-0.215c-0.009-0.006-0.021-0.008-0.03-0.017l-5-4
+	                        C5.417,11.153,5.312,10.21,5.83,9.563c0.518-0.646,1.462-0.751,2.108-0.234l2.563,2.05V3.5C10.5,2.671,11.171,2,12,2
+	                        s1.5,0.671,1.5,1.5v7.879l2.562-2.05c0.649-0.518,1.592-0.413,2.107,0.234C18.688,10.21,18.584,11.154,17.938,11.671z M23,19.5v-4
+	                        c0-0.828-0.672-1.5-1.5-1.5S20,14.672,20,15.5V19H4v-3.5C4,14.672,3.329,14,2.5,14S1,14.672,1,15.5v4C1,20.879,2.122,22,3.5,22h17
+	                        C21.879,22,23,20.879,23,19.5z">
+                    </path>
+                </svg>
+                将您当前的调色板以Hex、RGB、HTML、CSS和SCSS格式输出。试一下吧！
+            </div>
+        </section>
+    </div>
+    <div class="recommend">
+        <div class="color-dropdown">
+            <div>
+                <span class="option-title">互补色</span>
+                <span class="caret"></span>
+            </div>
+            <div class="color-dropdown-content">
+                <ul>
+                    <li id="complementary">互补色</li>
+                    <li id="triadic">三色系</li>
+                    <li id="tetradic">四色系</li>
+                    <li id="analogous">类似色</li>
+                    <li id="neutral">中性色</li>
+                    <li id="shades">色度</li>
+                    <li id="tints">色彩</li>
+                    <li id="tones">色调</li>
+                </ul>
+            </div>
+        </div>
+         <div class="export">
+            导出颜色
+             <svg version="1.1" class="button-svg" data-export="palette" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                    <path class="fill" data-export="palette" d="M17.938,11.671l-5,4c-0.008,0.009-0.021,0.011-0.029,0.017c-0.118,0.09-0.248,0.164-0.389,0.215
+	                        c-0.024,0.011-0.049,0.017-0.075,0.023C12.303,15.971,12.155,16,12,16s-0.303-0.029-0.443-0.074
+	                        c-0.025-0.008-0.05-0.014-0.074-0.023c-0.142-0.051-0.271-0.125-0.389-0.215c-0.009-0.006-0.021-0.008-0.03-0.017l-5-4
+	                        C5.417,11.153,5.312,10.21,5.83,9.563c0.518-0.646,1.462-0.751,2.108-0.234l2.563,2.05V3.5C10.5,2.671,11.171,2,12,2
+	                        s1.5,0.671,1.5,1.5v7.879l2.562-2.05c0.649-0.518,1.592-0.413,2.107,0.234C18.688,10.21,18.584,11.154,17.938,11.671z M23,19.5v-4
+	                        c0-0.828-0.672-1.5-1.5-1.5S20,14.672,20,15.5V19H4v-3.5C4,14.672,3.329,14,2.5,14S1,14.672,1,15.5v4C1,20.879,2.122,22,3.5,22h17
+	                        C21.879,22,23,20.879,23,19.5z">
+                    </path>
+                </svg>
+         </div>
 
-    <!-- 引入jQuery -->
-    <script src="script/jquery-3.2.1.min.js"></script>
-    <!-- 引入bootstrap插件 -->
-    <script src="style/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <!--   引入main.js    -->
-    <script src="script/main.js"></script>
-    </body>
+        <div class="re-colors">
+            <!--<div class="color-tabs">-->
+                <!--<div class="co-tab color-label"></div>-->
+                <!--<div>-->
+                    <!--<div class="co-tabs-hex">#2CA5D1</div>-->
+                    <!--<div class="co-tabs-rgb">11, 23, 100</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<footer>
+    Copy Rights! Made by Znewcradle.
+</footer>
+
+<!-- 引入jQuery -->
+<script src="script/jquery-3.2.1.min.js"></script>
+<!-- 引入bootstrap插件 -->
+<script src="style/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<!-- 引入color.js -->
+<script src="script/color.js"></script>
+<!--   引入main.js    -->
+<script src="script/main.js"></script>
+</body>
 </html>
