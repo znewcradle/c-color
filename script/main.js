@@ -71,6 +71,7 @@ $(function(){
             $header.removeClass("fixed-header");
             is_fixed = false;
         }
+
     });
     /**
      * 为recommend-color.html添加色块
@@ -243,8 +244,46 @@ $(function(){
     }
     generateReCBlocks(null, -1);
 
-});
+    /**
+     * 针对了解颜色的页面
+     */
+    $(document).scroll(function(){
+        var $tips = $("div.content-tips");
+        $tips.addClass("fixed-tips");
+        if( $(document).scrollTop() === 0 ) {
+            $tips.removeClass("fixed-tips");
+        }
+    });
 
+
+    $("div.content-tips li").each(function(index){
+        $(this).attr("pos", index);
+        $(this).click( function(){
+            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos")  + ")");
+            if($sec_content !== undefined && $sec_content !== null){
+                 var top  = $sec_content[0].offsetTop;
+                 $("html, body").animate({scrollTop: top}, 1000);
+            }
+        });
+    });
+    $("h3.know-rgb").click(function(){
+        $("div.introduction-zone").hide();
+        $("div.hsv.game").hide();
+        $("div.rgb.game").show();
+        loadGame(0);
+    });
+    $("h3.know-hsv").click(function(){
+        $("div.introduction-zone").hide();
+        $("div.rgb.game").hide();
+        $("div.hsv.game").show();
+         loadGame(1);
+    });
+    $("div.text-introduction").click(function(){
+        $("div.rgb.game").hide();
+        $("div.hsv.game").hide();
+        $("div.introduction-zone").show();
+    });
+});
 
 
 

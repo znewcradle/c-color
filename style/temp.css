@@ -1,0 +1,85 @@
+* {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+#wrap {
+    display: inline-block;
+    position: absolute;
+}
+
+#color-hs {
+    width: 256px;
+    height: 256px;
+    display: inline-block;
+    position: relative;
+}
+
+#color-hs .color-hs-value {
+    display: inline-block;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    background: url("../images/circle-selected-black.gif");
+    width: 11px;
+    height: 11px;
+    cursor: crosshair
+}
+
+#color-v {
+    width: 20px;
+    height: 256px;
+    margin-left: 30px;
+    display: inline-block;
+    position: relative;
+}
+
+#color-v-value {
+    position: absolute;
+    display: inline-block;
+    width: 38px;
+    height: 9px;
+    top: 0;
+    left: -9px;
+    cursor: pointer;
+}
+
+#color-v-value .value {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    position: absolute;
+}
+
+#color-v-value .value-l {
+    background: url("../images/arrow-l.gif") no-repeat;
+}
+
+#color-v-value .value-r {
+    background: url("../images/arrow-r.gif") no-repeat;
+    left: 29px;
+}
+
+.color-show {
+    margin-top: 10px
+}
+
+.color-show span {
+    margin-right: 5px;
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.color-show-rgb {
+    width: 160px !important;
+}
+
+#color-preview {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    position: absolute;
+    left: 400px;
+    top: 0;
+}

@@ -1,0 +1,241 @@
+/**
+for the about-color page and help users know about color
+ */
+body{
+  background-color: #3e403c;
+}
+header.recommend.about-color {
+    border-bottom: 0.175rem solid #eeeeee;
+    position: fixed;
+    z-index: 10;
+}
+div.main-content {
+    width: 88%;
+    height: 100%;
+    position: relative;
+    top: 8rem;
+    left: 6%;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.045em;
+    font-size: 1.675rem;
+    font-family: "Lato", "Helvetica", Helvetica, sans-serif;
+}
+div.main-content div.content-tips {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+     background-color: white;
+    text-align: left;
+    padding: 2%;
+    /*border-right: 0.375rem solid #eeeeee;*/
+    /*border-top: 0.575rem solid #f7f7f7;*/
+    margin-right: 0.675rem;
+    margin-top: 0.575rem;
+}
+div.main-content div.content-tips div.color-introduction ul li::after,
+div.main-content div.content-tips div.color-introduction h3::after{
+    width: 0;
+    height: 2px;
+    display: inline-block;
+    content: " ";
+    position: absolute;
+    left: 12%;
+    transition: left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1), width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+div.main-content div.content-tips div.color-introduction ul li:hover::after{
+    width: 30%;
+    height: 2px;
+    position: absolute;
+    left: 5%;
+    background-color: #C8F7E5;
+}
+div.main-content div.content-tips div.color-introduction h3:hover::after{
+    width: 80%;
+    height: 2px;
+    position: absolute;
+    left: 5%;
+    background-color:  #F7C8DA;
+}
+div.main-content div.content-tips.fixed-tips {
+    position: fixed;
+    left: 3%;
+    top: 12%;
+}
+div.main-content div.content-tips div.color-introduction ul {
+    margin: 0;
+    padding: 0;
+}
+div.main-content div.content-tips h3{
+    cursor: pointer;
+}
+div.main-content div.content-tips ul li{
+    list-style: none;
+    cursor: pointer;
+}
+
+div.main-content div.content-zone {
+    position: absolute;
+    left: 20%;
+    width: 80%;
+    top: 0;
+     background-color: white;
+    margin-top: 0.575rem;
+}
+div.main-content div.introduction-zone {
+    text-align: left;
+}
+div.content-zone img.img-responsive.img-left {
+    width: 210px;
+    height: 240px;
+    display: inline-block;
+}
+div.content-zone img.img-responsive.img-right{
+    width: 320px;
+    height: 240px;
+    display: inline-block;
+}
+div.content-zone img.img-responsive {
+    width: 550px;
+    height: 133px;
+}
+div.content-zone section.content{
+    border-top: 0.375rem solid #eeeeee;
+    box-shadow: 0 -0.4rem 0 #eeeeff;
+    padding: 2%;
+    cursor: pointer;
+}
+div.content-zone section.header-section {
+     border-top: 0.575rem solid #f7f7f7;
+    box-shadow: 0 -0.4rem 0 #f7f7f7;
+    padding: 2%;
+}
+div.content-zone section.content p {
+    border-left: 1px solid  #C8F7E5;
+    box-shadow: -0.2rem 0 0 #C8F7E5;
+    padding-left: 0.8rem;
+}
+div.content-zone section.content p:hover{
+    border-left: 1px solid #F7C8DA;
+    box-shadow: -0.2rem 0 0 #F7C8DA;
+}
+/**
+for the rgb game
+ */
+div.game.content-zone{
+    margin-left: 0.575rem;
+    padding-bottom: 2rem;
+}
+div.game.content-zone h1{
+  text-align: center;
+  color: white;
+  font-weight: 300;
+}
+div.game.content-zone p{
+  text-align: center;
+  background-color: rgb(205, 205, 205);
+}
+div.game.content-zone button{
+  border: none;
+  background: none;
+  height: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #8aaad5;
+  letter-spacing: 1px;
+  font-size: inherit;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  outline: none;
+}
+div.game.content-zone button:hover{
+  background-color: #8aaad5;
+  color: white;
+}
+
+div.game.content-zone .text-center{
+  text-align: center;
+}
+
+div.game.content-zone .square{
+  width: 30%;
+  background-color: green;
+  padding-bottom: 30%;
+  float: left;
+  margin: 1.66%;
+  border-radius: 15%;
+  transition: background .3s;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+}
+
+div.game.content-zone .highlight{
+  background-color: #8aaad5;
+  margin: 0 40px;
+}
+
+div.game.content-zone .highlight:hover {
+  background-color:#3b5c7c;
+}
+div.game.content-zone .selected {
+  background-color: #8aaad5;
+  color:white;
+}
+
+div.square-container {
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 500px;
+    position: relative;
+    left: 0;
+    top: 10%;
+    width: 90%;
+}
+div.game.content-zone div.headingContainer{
+  background-color: #8aaad5;
+  padding: 5px;
+  line-height: 0.75;
+}
+div.buttonContainer{
+  background-color: #ffffff;
+  text-align: center;
+  height: 20px;
+}
+h1.colorDisplay{
+  text-transform: uppercase;
+  font-size: 200%;
+}
+span.color-message{
+  display: inline-block;
+  width: 25%;
+  color: #d62000;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
