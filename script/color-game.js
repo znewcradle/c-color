@@ -2,29 +2,27 @@
  * Created by Xu on 2017/6/1.
  */
 
-var loadGame = function (param) {
+ function loadGame(param) {
     var hsv_or_rgb = param;
     var numberOfSquares = 6;
     var colors = generateRandomColors(numberOfSquares);
 
+    var squares, resetBtn, headingContainer, easyBtn, hardBtn, zone;
+
     if (hsv_or_rgb === 0) {
-        var squares = document.querySelectorAll("div.rgb div.square");
-        var resetBtn = document.querySelector("div.rgb button.reset");
-        var h1 = document.querySelectorAll("div.rgb h1");
-        var h2 = document.querySelector("div.rgb h2");
-        var headingContainer = document.querySelector("div.rgb div.headingContainer");
-        var easyBtn = document.querySelector("div.rgb button.easyBtn");
-        var hardBtn = document.querySelector("div.rgb button.hardBtn");
-        var zone = document.querySelector("div.rgb.game.content-zone");
+        squares = document.querySelectorAll("div.rgb div.square");
+        resetBtn = document.querySelector("div.rgb button.reset");
+        headingContainer = document.querySelector("div.rgb div.headingContainer");
+        easyBtn = document.querySelector("div.rgb button.easyBtn");
+        hardBtn = document.querySelector("div.rgb button.hardBtn");
+        zone = document.querySelector("div.rgb.game.content-zone");
     } else {
-        var squares = document.querySelectorAll("div.hsv div.square");
-        var resetBtn = document.querySelector("div.hsv button.reset");
-        var h1 = document.querySelectorAll("div.hsv h1");
-        var h2 = document.querySelector("div.hsv h2");
-        var headingContainer = document.querySelector("div.hsv div.headingContainer");
-        var easyBtn = document.querySelector("div.hsv button.easyBtn");
-        var hardBtn = document.querySelector("div.hsv button.hardBtn");
-        var zone = document.querySelector("div.hsv.game.content-zone");
+        squares = document.querySelectorAll("div.hsv div.square");
+        resetBtn = document.querySelector("div.hsv button.reset");
+        headingContainer = document.querySelector("div.hsv div.headingContainer");
+        easyBtn = document.querySelector("div.hsv button.easyBtn");
+        hardBtn = document.querySelector("div.hsv button.hardBtn");
+        zone = document.querySelector("div.hsv.game.content-zone");
     }
 
     var pickedColor = pickColor();
@@ -122,14 +120,23 @@ var loadGame = function (param) {
 ///////////////////////////////
 
 //East and Hard Mode listeners
-    //easyBtn.removeEventListener("click", easyHandler);
-    easyBtn.addEventListener("click", easyHandler);
+    easyBtn.onclick = function(e){
+        e.stopPropagation();
+        easyHandler();
+        return false;
+    };
 
-    //hardBtn.removeEventListener("click", hardHandler);
-    hardBtn.addEventListener("click", hardHandler);
+    hardBtn.onclick = function(e){
+        e.stopPropagation();
+        hardHandler();
+        return false;
+    };
 
-    //resetBtn.removeEventListener("click", resetHandler);
-    resetBtn.addEventListener("click", resetHandler);
+    resetBtn.onclick = function(e){
+        e.stopPropagation();
+        resetHandler();
+        return false;
+    };
 
 ///////////////////////////////
 //FUNCTION DECLASRAIONS
@@ -140,7 +147,10 @@ var loadGame = function (param) {
         //add initial colors to squares
         squares[i].style.background = colors[i];
         //add click eventListener to every square
-        squares[i].addEventListener("click", function () {
+        squares[i].onclick = function(){};
+        squares[i].onclick = function (e) {
+            //stop propagation
+            e.stopPropagation();
             //Get the color of picked square
             var clickedColor = this.style.background;
 
@@ -159,7 +169,8 @@ var loadGame = function (param) {
                 messageDisplay.textContent = "Incorrect";
                 this.style.background = "#ffffff";
             }
-        });
+            return false;
+        };
     }
 
 //generate random colors function
@@ -199,7 +210,6 @@ var loadGame = function (param) {
 
 //Select one random color to be displayed
     function pickColor() {
-       // alert("pickColor is invoked");
         var random = Math.floor(Math.random() * colors.length);
         return colors[random];
     }

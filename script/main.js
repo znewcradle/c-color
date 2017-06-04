@@ -266,22 +266,26 @@ $(function(){
             }
         });
     });
+
     $("h3.know-rgb").click(function(){
         $("div.introduction-zone").hide();
         $("div.hsv.game").hide();
         $("div.rgb.game").show();
         loadGame(0);
+        return false;
     });
     $("h3.know-hsv").click(function(){
         $("div.introduction-zone").hide();
         $("div.rgb.game").hide();
         $("div.hsv.game").show();
          loadGame(1);
+         return false;
     });
     $("div.text-introduction").click(function(){
         $("div.rgb.game").hide();
         $("div.hsv.game").hide();
         $("div.introduction-zone").show();
+        return false;
     });
 });
 
