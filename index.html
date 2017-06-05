@@ -57,7 +57,7 @@
                 <span class="hsv">100, 40%, 56%</span>
             </div>
         </div>
-        <div class="color-download">
+        <div class="color-download" data-toggle="modal" data-target="#downloadModal">
             <svg version="1.1" class="button-svg" data-export="palette" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                     <path class="fill" data-export="palette" d="M17.938,11.671l-5,4c-0.008,0.009-0.021,0.011-0.029,0.017c-0.118,0.09-0.248,0.164-0.389,0.215
 	                    c-0.024,0.011-0.049,0.017-0.075,0.023C12.303,15.971,12.155,16,12,16s-0.303-0.029-0.443-0.074
@@ -220,6 +220,63 @@
         </div>
     </div>
 </div>
+
+
+<!-- 下载模态框（Modal） -->
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">下载颜色</h4>
+            </div>
+            <div class="modal-body">
+                <div class="color-bar" id="color-download-bar">
+                    <div class="color-item">
+                        <div class="color-demo-item first-item"></div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-demo-item"></div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-demo-item"></div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-demo-item"></div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-demo-item"></div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-demo-item last-item"></div>
+                    </div>
+                </div>
+                <div class="download-data">
+                    <div class="download-data-item download-hex">
+                    <ul>
+                        <li>#12a192</li>
+                    </ul>
+                </div>
+                <div class="download-data-item download-rgb">
+                    <ul>
+                        <li>rgb(23, 23, 23)</li>
+                    </ul>
+                </div>
+                <div class="download-data-item download-html">
+                    <ul>
+                        <li>style="color: rgb(23, 23, 23)"</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">下载</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <footer>
     Copy Rights! Made by Znewcradle.
 </footer>

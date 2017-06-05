@@ -13,12 +13,26 @@ $(function(){
     var selectColor = function($cur) {
         var coStr = $cur.css("background-color");
         var is_changed = false;
+        var index = -1;
+
         $("div.color-item div.color-demo-item").each(function(){
+            ++ index;
             if($(this).next().hasClass("color-unlock") && is_changed === false) {
                 $(this).css("background-color", coStr);
                 is_changed = true;
+                return false;
             }
-        })
+        });
+
+        if(is_changed == true) {
+            index = index % 6;
+            console.log(index);
+            $("div#color-download-bar div.color-item div.color-demo-item").each(function(ind){
+                if(ind === index) {
+                    $(this).css("background-color", coStr);
+                }
+            });
+        }
     };
 
     $(".color-label").click(function(){

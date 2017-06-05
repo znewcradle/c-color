@@ -198,7 +198,7 @@
             $showB.text(rgb.b);
             $showG.text(rgb.g);
             $preview.css("background-color", "rgb" + rgbStr);
-            $color-demo.css("background-color", "rgb" + rgbStr);
+            $demo.css("background-color", "rgb" + rgbStr);
             $showHex.text(rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16));
 
             $("span.hex").text("#" + rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16));
