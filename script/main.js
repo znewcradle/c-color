@@ -301,6 +301,20 @@ $(function(){
         $("div.introduction-zone").show();
         return false;
     });
+
+    function genetateColorStr(){
+        var co_arr = [];
+
+        for(var i  = 0; i < 6; ++ i) {
+            var r = Math.floor(255 * Math.round());
+            var g = Math.floor(255 * Math.round());
+            var b = Math.floor(255 * Math.round());
+
+            var coStr = "rgb(" + r + "," + g + "," + b + ")";
+            co_arr.push(coStr);
+        }
+        return co_arr;
+    }
 });
 
 
