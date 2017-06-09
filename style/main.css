@@ -479,6 +479,7 @@ div.color-dropdown:hover div.color-dropdown-content {
 }
 div.export {
     margin-left: 5rem;
+    cursor: pointer;
 }
 div.export svg {
     fill: #eeeeee;
@@ -529,7 +530,7 @@ div.modal-content {
     margin-top: 10%;
     border: none;
 }
-div#body-select-download {
+div#body-select-download, div#body-recommend-download {
     background-color: white;
 }
 span.modal-title {
@@ -537,6 +538,10 @@ span.modal-title {
     font-weight: bold;
 }
 div#color-download-bar div.color-item div.color-demo-item {
+    width: 12rem;
+    height: 6rem;
+}
+div#recommend-bar div.color-item div.color-demo-item {
     width: 12rem;
     height: 6rem;
 }

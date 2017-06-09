@@ -362,6 +362,66 @@ $(function () {
             }
         });
     });
+    /***********************导出模态框 **************************/
+    $("div.export").click(function () {
+        var color_arr = [];
+        var color_str_arr = [];
+        var $color_bar = $("div#recommend-bar");
+        $color_bar.empty();
+
+        var hex_list = $("div.download-data-item.download-hex ul");
+        var rgb_list = $("div.download-data-item.download-rgb ul");
+        var html_list = $("div.download-data-item.download-html ul");
+
+        hex_list.empty();
+        rgb_list.empty();
+        html_list.empty();
+
+        $("div.co-tab.color-label").each(function () {
+            var coStr = $(this).css("background-color");
+            color_str_arr.push(coStr);
+            color_arr.push(splitColor(coStr));
+        });
+
+        for (var i = 0; i < color_arr.length; ++i) {
+            var hex = "#" + color_arr[i].r.toString(16) + color_arr[i].g.toString(16) + color_arr[i].b.toString(16);
+            hex_list.append("<li>" + hex + "</li>");
+            rgb_list.append("<li>" + color_str_arr[i] + "</li>");
+            html_list.append("<li>color: " + color_str_arr[i] + "</li>");
+
+            var $item = $("<div class='color-item'></div>");
+            var $demo = $("<div class='color-demo-item'></div>");
+
+            $demo.css("background-color", color_str_arr[i]);
+            if (i === 0) {
+                $demo.addClass("first-item");
+            } else if (i === color_arr.length - 1) {
+                $demo.addClass("last-item");
+            }
+            $item.append($demo);
+            $color_bar.append($item);
+        }
+    });
+    $("div#modal-recommend-download").click(function () {
+        html2canvas(document.getElementById("body-recommend-download"), {
+            onrendered: function (canvas) {
+                var type = 'png';
+                var imgData = canvas.toDataURL(type);
+
+                var _fixType = function (type) {
+                    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+                    var r = type.match(/png|jpeg|bmp|gif/)[0];
+                    return 'image/' + r;
+                };
+                imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+
+                var filename = "recommend_bar" + "." + type;
+                saveFile(imgData, filename);
+            }
+        })
+    });
+    /*******************************推荐色导出 **********************/
+
 });
 
 
