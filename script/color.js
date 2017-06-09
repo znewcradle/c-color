@@ -87,8 +87,6 @@
 
         var lastPos, hasMoved = false;
 
-        console.log(range);
-
         //鼠标按下时的操作
         $handler.on("mousedown", function (e) {
             e.stopPropagation();

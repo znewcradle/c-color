@@ -1,44 +1,44 @@
 /**
  * Created by Xu on 2017/5/19.
  */
-$(function(){
+$(function () {
     //整体的动态呈现效果
     $("nav#nav").addClass("animated fadeInDown");
     $("div#main").addClass("animated fadeInUp");
     //锁定颜色和解锁颜色的功能
-    $("div.color-bar span.islock").click(function(){
+    $("div.color-bar span.islock").click(function () {
         $(this).toggleClass("color-lock").toggleClass("color-unlock");
     });
     //选定颜色
-    var selectColor = function($cur) {
+    var selectColor = function ($cur) {
         var coStr = $cur.css("background-color");
         var is_changed = false;
         var index = -1;
 
-        $("div.color-item div.color-demo-item").each(function(){
-            ++ index;
-            if($(this).next().hasClass("color-unlock") && is_changed === false) {
+        $("div.color-item div.color-demo-item").each(function () {
+            ++index;
+            if ($(this).next().hasClass("color-unlock") && is_changed === false) {
                 $(this).css("background-color", coStr);
                 is_changed = true;
                 return false;
             }
         });
 
-        if(is_changed == true) {
+        if (is_changed == true) {
             index = index % 6;
             console.log(index);
-            $("div#color-download-bar div.color-item div.color-demo-item").each(function(ind){
-                if(ind === index) {
+            $("div#color-download-bar div.color-item div.color-demo-item").each(function (ind) {
+                if (ind === index) {
                     $(this).css("background-color", coStr);
                 }
             });
         }
     };
 
-    $(".color-label").click(function(){
+    $(".color-label").click(function () {
         selectColor($(this));
     });
-    $("div.color-dropdown-content ul li").click(function(){
+    $("div.color-dropdown-content ul li").click(function () {
         var coStr = $("#color-preview").css("background-color");
         console.log(coStr);
         var colors = generateColors(coStr, $(this).attr("id"));
@@ -46,10 +46,10 @@ $(function(){
         $tabs.empty();
         $("span.option-title").text($(this).text());
         if (colors !== null) {
-            for(var i = 0; i < colors.length; ++ i) {
+            for (var i = 0; i < colors.length; ++i) {
                 var R = colors[i].r, G = colors[i].g, B = colors[i].b;
                 var r = R.toString(16), g = G.toString(16), b = B.toString(16);
-                var rgbStr = "rgb(" + R + "," +G + "," + B + ")";
+                var rgbStr = "rgb(" + R + "," + G + "," + B + ")";
                 var $tab = $("<div class='color-tabs'></div>");
                 var $label = $("<div class='co-tab color-label'></div>");
                 $label.css("background-color", rgbStr);
@@ -59,7 +59,7 @@ $(function(){
                 $rgb.text(R + ", " + G + ", " + B);
                 var $data = $("<div></div>");
                 //注册事件
-                $label.click(function(){
+                $label.click(function () {
                     selectColor($(this));
                 });
                 //组装组件
@@ -75,13 +75,13 @@ $(function(){
      * 固定header
      */
     var is_fixed = false;
-    $(document).scroll(function(){
-        var top =  parseInt($("div.main").css("top"));
+    $(document).scroll(function () {
+        var top = parseInt($("div.main").css("top"));
         var $header = $("div.color-header");
-        if($(document).scrollTop() > top && is_fixed === false) {
+        if ($(document).scrollTop() > top && is_fixed === false) {
             $header.addClass("fixed-header");
             is_fixed = true;
-        } else if($(document).scrollTop() <= top && is_fixed === true){
+        } else if ($(document).scrollTop() <= top && is_fixed === true) {
             $header.removeClass("fixed-header");
             is_fixed = false;
         }
@@ -95,7 +95,7 @@ $(function(){
         var colors = ['#f34336', '#e91e63', '#f7f7f7', '#deb7e5', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722', '#7a5548', '#9e9e9e', '#607d8b'];
         var $blocks = $("div.color-blocks");
 
-        for(var i = 0; i < labels.length; ++ i) {
+        for (var i = 0; i < labels.length; ++i) {
             var $cblock = $("<div class='cblock'></div>");
             if (i != 2) {
                 var $svg = $(' <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" style="&#10;&#10;"><path d="M18 32.34L9.66 24l-2.83 2.83L18 38l24-24-2.83-2.83z"/></svg>');
@@ -106,7 +106,7 @@ $(function(){
                 $inner.css("background-color", colors[i]);
                 $cblock.append($inner);
 
-                $inner.click(function(){
+                $inner.click(function () {
                     clickColor($(this));
                 });
             } else {
@@ -116,45 +116,51 @@ $(function(){
             $blocks.append($cblock);
         }
     }
+
     addCBlocks();
     /**
      * 选择配色，搭配配色功能
      */
     var svg_times = false;
-    var c_colors =[];
+    var c_colors = [];
+
     /**
      * 处理点击事件
      * @param $inner
      */
-    var addInnerClick = function($inner) {
+    function splitColor(coStr) {
+        var color = {};
+        coStr = coStr.slice(4, -1);
+        var cos = coStr.split(",");
+        color["r"] = parseInt(cos[0]);
+        color["g"] = parseInt(cos[1]);
+        color["b"] = parseInt(cos[2]);
+        return color;
+    }
+
+    var addInnerClick = function ($inner) {
         $inner.addClass("svg-click");
-            var coStr = $inner.css("background-color");
-            coStr = coStr.slice(4, -1);
-            var cos = coStr.split(",");
-            var color = {};
-            color["r"] = parseInt(cos[0]);
-            color["g"] = parseInt(cos[1]);
-            color["b"] = parseInt(cos[2]);
-            c_colors.push(color);
+        var coStr = $inner.css("background-color");
+        c_colors.push(splitColor(coStr));
     };
-    var clickColor = function($inner) {
+    var clickColor = function ($inner) {
         if (c_colors.length < 2) {
             addInnerClick($inner);
             if (c_colors.length === 2 && svg_times === false) {
                 svg_times = true;
                 showDemo();
-            } else if(c_colors.length === 2 && svg_times === true) {
+            } else if (c_colors.length === 2 && svg_times === true) {
                 reMainColor(c_colors[1]);
             }
         } else {
             c_colors = [];
-            $("div.color-blocks div.cblock div.inner-cblock").each(function(){
-                if($(this).hasClass("svg-click")) {
+            $("div.color-blocks div.cblock div.inner-cblock").each(function () {
+                if ($(this).hasClass("svg-click")) {
                     $(this).removeClass("svg-click");
                 }
             });
             addInnerClick($inner);
-              if(c_colors.length == 1 && svg_times === true) {
+            if (c_colors.length == 1 && svg_times === true) {
                 reSubColor(c_colors[0]);
             }
         }
@@ -162,7 +168,7 @@ $(function(){
     /**
      * 展示app的demo
      */
-    var showDemo = function() {
+    var showDemo = function () {
         $("div.re-sidebar").css("width", "50%");
         $("div.cblock div.inner-cblock svg").css("left", "60%");
         $("div.app-demo div.app-toolbar div.app-toolbar-heading").css("width", "100%").show();
@@ -179,7 +185,7 @@ $(function(){
      * 副色，#212121（主文本色）, #757575（次文本色）, #BDBDBD（分界线颜色）
      * 深主色（状态栏色），主色（背景），浅主色（），text/icons（上半部分字的颜色）
      */
-    var reMainColor = function(main_color) {
+    var reMainColor = function (main_color) {
         var darks = generateMixColor(main_color, "shades", 6);
         var lights = generateMixColor(main_color, "tints", 6);
 
@@ -188,7 +194,7 @@ $(function(){
         var main_text, main_text_rgb = {};
 
         var hsv = rgb2hsv(main_color.r / 255, main_color.g / 255, main_color.b / 255);
-        if(hsv.s > 75 && hsv.v > 75) {
+        if (hsv.s > 75 && hsv.v > 75) {
             main_text = "#FFFFFF";
             main_text_rgb["r"] = main_text_rgb["g"] = main_text_rgb["b"] = 255;
         } else {
@@ -197,14 +203,14 @@ $(function(){
         }
         $("div.app-demo div.app-header div.app-status").css("background-color", "rgb(" + darks.r + "," + darks.g + "," + darks.b + ")");
         $("div.app-demo div.app-header div.app-toolbar").css("background-color", "rgb(" + main_color.r + "," + main_color.g + "," + main_color.b + ")")
-                                                                                        .css("color", main_text);
+            .css("color", main_text);
 
         generateReCBlocks(darks, 1);
         generateReCBlocks(main_color, 2);
         generateReCBlocks(lights, 3);
         generateReCBlocks(main_text_rgb, 4);
     };
-    var reSubColor = function(sub_color) {
+    var reSubColor = function (sub_color) {
         $("ul.app-list li:nth-child(1)").css("border-color", "#BDBDBD");
         $("div.app-button").css("background-color", "rgb(" + sub_color.r + "," + sub_color.g + "," + sub_color.b + ")");
         $("div.app-content ul.app-list li p.primary-text").css("color", "#212121");
@@ -218,6 +224,7 @@ $(function(){
     $("div.re-color-toolbar svg.hide-toolbar").click(clickHide);
 
     var is_click = false;
+
     function clickHide() {
         if (is_click === false) {
             $(this).css("transform", "rotate(360deg)").css("-webkit-transform", "rotate(360deg)");
@@ -238,14 +245,14 @@ $(function(){
      * 生成推荐色块
      */
     function generateReCBlocks(color, position) {
-        if(color == null && position === -1) {
+        if (color == null && position === -1) {
             var sub_colors = ["#374046", "#212121", "#757575", "#BDBDBD"];
             var tips = ['DARK PRIMARY COLOR', 'PRIMARY COLOR', 'LIGHT PRIMARY COLOR', 'TEXT/ICONS', 'ACCENT COLOR', 'PRIMARY TEXT', 'SECONDARY TEXT', 'DIVIDER COLOR'];
             var $parent = $("div.re-color-zone div.re-color-list");
-            for(var i = 0; i < 8; ++ i) {
+            for (var i = 0; i < 8; ++i) {
                 var $div = $("<div class='re-cblock'></div>");
-                $div.append("<label class='color-tip'>"+ tips[i] +"</label>");
-                if(i < 4) {
+                $div.append("<label class='color-tip'>" + tips[i] + "</label>");
+                if (i < 4) {
                     $div.css("background-color", "#374046");
                 } else {
                     $div.css("background-color", sub_colors[i - 4]);
@@ -253,68 +260,108 @@ $(function(){
                 $parent.append($div);
             }
         } else {
-            $("div.re-color-zone div.re-cblock:nth-child(" + position +")").css("background-color", "rgb(" + color.r + "," + color.g + "," + color.b + ")");
+            $("div.re-color-zone div.re-cblock:nth-child(" + position + ")").css("background-color", "rgb(" + color.r + "," + color.g + "," + color.b + ")");
         }
     }
+
     generateReCBlocks(null, -1);
 
     /**
      * 针对了解颜色的页面
      */
-    $(document).scroll(function(){
+    $(document).scroll(function () {
         var $tips = $("div.content-tips");
         $tips.addClass("fixed-tips");
-        if( $(document).scrollTop() === 0 ) {
+        if ($(document).scrollTop() === 0) {
             $tips.removeClass("fixed-tips");
         }
     });
 
 
-    $("div.content-tips li").each(function(index){
+    $("div.content-tips li").each(function (index) {
         $(this).attr("pos", index);
-        $(this).click( function(){
-            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos")  + ")");
-            if($sec_content !== undefined && $sec_content !== null){
-                 var top  = $sec_content[0].offsetTop;
-                 $("html, body").animate({scrollTop: top}, 1000);
+        $(this).click(function () {
+            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos") + ")");
+            if ($sec_content !== undefined && $sec_content !== null) {
+                var top = $sec_content[0].offsetTop;
+                $("html, body").animate({scrollTop: top}, 1000);
             }
         });
     });
 
-    $("h3.know-rgb").click(function(){
+    $("h3.know-rgb").click(function () {
         $("div.introduction-zone").hide();
         $("div.hsv.game").hide();
         $("div.rgb.game").show();
         loadGame(0);
         return false;
     });
-    $("h3.know-hsv").click(function(){
+    $("h3.know-hsv").click(function () {
         $("div.introduction-zone").hide();
         $("div.rgb.game").hide();
         $("div.hsv.game").show();
-         loadGame(1);
-         return false;
+        loadGame(1);
+        return false;
     });
-    $("div.text-introduction").click(function(){
+    $("div.text-introduction").click(function () {
         $("div.rgb.game").hide();
         $("div.hsv.game").hide();
         $("div.introduction-zone").show();
         return false;
     });
 
-    function genetateColorStr(){
-        var co_arr = [];
 
-        for(var i  = 0; i < 6; ++ i) {
-            var r = Math.floor(255 * Math.round());
-            var g = Math.floor(255 * Math.round());
-            var b = Math.floor(255 * Math.round());
+    /********************下载模态框 **********************/
+    $("div.color-download").click(function () {
+        var color_arr = [];
+        var color_str_arr = [];
 
-            var coStr = "rgb(" + r + "," + g + "," + b + ")";
-            co_arr.push(coStr);
+        var hex_list = $("div.download-data-item.download-hex ul");
+        var rgb_list = $("div.download-data-item.download-rgb ul");
+        var html_list = $("div.download-data-item.download-html ul");
+
+        hex_list.empty();
+        rgb_list.empty();
+        html_list.empty();
+
+        $("div.color-bar.fixed div.color-item div.color-demo-item").each(function () {
+            var coStr = $(this).css("background-color");
+            color_str_arr.push(coStr);
+            color_arr.push(splitColor(coStr));
+        });
+        for (var i = 0; i < color_arr.length; ++i) {
+            var hex = "#" + color_arr[i].r.toString(16) + color_arr[i].g.toString(16) + color_arr[i].b.toString(16);
+            hex_list.append("<li>" + hex + "</li>");
+            rgb_list.append("<li>" + color_str_arr[i] + "</li>");
+            html_list.append("<li>color: " + color_str_arr[i] + "</li>");
         }
-        return co_arr;
-    }
+    });
+    var saveFile = function (data, filename) {
+        var save_link = document.createElement('a');
+        save_link.href = data;
+        save_link.download = filename;
+
+        save_link.click();
+    };
+    $("div#modal-select-download").click(function () {
+        html2canvas(document.getElementById("body-select-download"), {
+
+            onrendered: function (canvas) {
+                var type = 'png';
+                var imgData = canvas.toDataURL(type);
+
+                var _fixType = function (type) {
+                    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+                    var r = type.match(/png|jpeg|bmp|gif/)[0];
+                    return 'image/' + r;
+                };
+                imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+
+                var filename = "color_bar" + "." + type;
+                saveFile(imgData, filename);
+            }
+        });
+    });
 });
 
 
