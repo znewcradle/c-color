@@ -196,6 +196,7 @@ $(function () {
         var hsv = rgb2hsv(main_color.r / 255, main_color.g / 255, main_color.b / 255);
         if (hsv.s > 75 && hsv.v > 75) {
             main_text = "#FFFFFF";
+            // $("div.re-cblock label").css("color", "#414141");
             main_text_rgb["r"] = main_text_rgb["g"] = main_text_rgb["b"] = 255;
         } else {
             main_text = "#212121";
@@ -247,7 +248,7 @@ $(function () {
     function generateReCBlocks(color, position) {
         if (color == null && position === -1) {
             var sub_colors = ["#374046", "#212121", "#757575", "#BDBDBD"];
-            var tips = ['DARK PRIMARY COLOR', 'PRIMARY COLOR', 'LIGHT PRIMARY COLOR', 'TEXT/ICONS', 'ACCENT COLOR', 'PRIMARY TEXT', 'SECONDARY TEXT', 'DIVIDER COLOR'];
+            var tips = ['DARK PRIMARY COLOR', 'PRIMARY COLOR', 'LIGHT PRIMARY COLOR', 'TEXT AND ICONS', 'ACCENT COLOR', 'PRIMARY TEXT', 'SECONDARY TEXT', 'DIVIDER COLOR'];
             var $parent = $("div.re-color-zone div.re-color-list");
             for (var i = 0; i < 8; ++i) {
                 var $div = $("<div class='re-cblock'></div>");
@@ -260,7 +261,15 @@ $(function () {
                 $parent.append($div);
             }
         } else {
-            $("div.re-color-zone div.re-cblock:nth-child(" + position + ")").css("background-color", "rgb(" + color.r + "," + color.g + "," + color.b + ")");
+            var $block = $("div.re-color-zone div.re-cblock:nth-child(" + position + ")");
+            $block.css("background-color", "rgb(" + color.r + "," + color.g + "," + color.b + ")");
+            if(position === 4) {
+                if(color.r > 33) {
+                    $block.find("label").css("color", "#414141");
+                } else {
+                    $block.find("label").css("color", "white");
+                }
+            }
         }
     }
 
@@ -418,10 +427,42 @@ $(function () {
                 var filename = "recommend_bar" + "." + type;
                 saveFile(imgData, filename);
             }
-        })
+        });
     });
     /*******************************推荐色导出 **********************/
+    function addCBlockLabel(){
+        $("div#re-color-list div.re-cblock label.hex-label").remove();
 
+        //准备色彩块的HEX label
+        $("div#re-color-list div.re-cblock").each(function(){
+            var coStr = $(this).css("background-color");
+            var color = splitColor(coStr);
+            var hex = "#" + color.r.toString(16) + color.g.toString(16) + color.b.toString(16);
+            $(this).append("<label class='hex-label'>"+ hex +"</label>");
+        });
+    }
+    function downloadAutoRecommend() {
+        addCBlockLabel();
+        html2canvas(document.getElementById("re-color-list"), {
+            onrendered: function (canvas) {
+                var type = 'png';
+                var imgData = canvas.toDataURL(type);
+
+                var _fixType = function (type) {
+                    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+                    var r = type.match(/png|jpeg|bmp|gif/)[0];
+                    return 'image/' + r;
+                };
+                imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+
+                var filename = "recommend_color" + "." + type;
+                saveFile(imgData, filename);
+            }
+        });
+    }
+      $(".download-toolbar").click(function(){
+            downloadAutoRecommend();
+    });
 });
 
 
