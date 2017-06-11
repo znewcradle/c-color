@@ -883,7 +883,7 @@ div.modal-logo svg{
     width: 24px;
     height: 24px;
 }
-.modal-footer {
+div.user .modal-footer {
     padding: 0;
     text-align: center;
     border-top: 1px solid #e5e5e5;
@@ -901,10 +901,10 @@ div#loginModal div.modal-btn-footer, div#registerModal div.modal-content {
     padding: 1rem;
     cursor: pointer;
 }
-div.modal-btn-footer:hover{
+div#loginModal div.modal-btn-footer:hover, div#registerModal div.modal-btn-footer:hover{
     background-color: #4cae4c;
 }
-div.error-message {
+div.user div.error-message {
     color: rgba(205, 0, 0, 0.8);
     font-size: smaller;
     margin-top: 0.1rem;
