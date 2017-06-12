@@ -301,7 +301,7 @@ div#color-hs {
     height: 400px;
     display: inline-block;
     position: absolute;
-    left: 10%;
+    left: 8%;
 }
 
 div#color-hs .color-hs-value {
@@ -320,7 +320,7 @@ div#color-hs .color-hs-value {
     height: 400px;
     display: inline-block;
     position: absolute;
-    left: 52%;
+    left: 53%;
 }
 
 #color-v-value {
@@ -366,7 +366,7 @@ div#color-detail {
     border-bottom-right-radius: 3px;
     position: absolute;
     left: 60%;
-    margin-top: 7.19%;
+    margin-top: 7.8%;
     width: 160px;
     height: 316px;
 }
@@ -606,10 +606,10 @@ header.recommend {
 /**for the color blocks*/
 div.color-blocks {
     position: absolute;
-    top: 9.5%;
+    top: 11%;
     left: 0;
     width: 100%;
-    height: 90.5%;
+    height: 89%;
     overflow:hidden;
 }
 div.cblock {
@@ -663,10 +663,10 @@ div.cblock div.inner-cblock.svg-click svg {
 div.re-sidebar {
     width: 0;
     background-color:#374046;
-    height: 90.5%;
+    height: 89%;
     position: absolute;
     left: 50%;
-    top: 9.5%;
+    top: 11%;
     transition: width 500ms ease-in-out;
 }
 /**
@@ -894,7 +894,10 @@ div#loginModal div.modal-content, div#registerModal div.modal-content {
     margin-left: 80%;
     margin-top: 20%;
 }
-div#loginModal div.modal-btn-footer, div#registerModal div.modal-content {
+div#loginModal div.modal-footer, div#registerModal div.modal-footer {
+    padding: 0;
+}
+div#loginModal div.modal-btn-footer, div#registerModal div.modal-btn-footer {
     width: 100%;
     height: 100%;
     background-color: #0A7BB0;

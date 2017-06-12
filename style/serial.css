@@ -4,9 +4,9 @@ for the serial.html
 div.grid-wrap {
     position: absolute;
     top: 10%;
-    width: 100%;
+    width: 90%;
     clear: both;
-	margin-left: 4.5%;
+	left: 5%;
 	padding: 0;
 	max-width: 1260px;
 }
@@ -301,7 +301,6 @@ body {
 }
 
 a {
-	color: #FF2A48;
 	text-decoration: none;
 	outline: none;
 }
@@ -444,3 +443,42 @@ section {
 	}
 
 }
+
+/*****************************************
+for the header
+ ************************************/
+header.recommend nav{
+    font-weight: bolder;
+}
+header.recommend div.header-user-entrance {
+    font-size: 1.85rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

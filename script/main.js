@@ -288,12 +288,12 @@ $(function () {
 
 
     $("div.content-tips li").each(function (index) {
-        $(this).attr("pos", index);
+        $(this).attr("pos", index + 1);
         $(this).click(function () {
-            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos") + ")");
-            if ($sec_content !== undefined && $sec_content !== null) {
+            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos")  + ")");
+            if ($sec_content) {
                 var top = $sec_content[0].offsetTop;
-                $("html, body").animate({scrollTop: top}, 1000);
+                $("html, body").animate({scrollTop: top + 200}, 1000);
             }
         });
     });
@@ -463,6 +463,7 @@ $(function () {
       $(".download-toolbar").click(function(){
             downloadAutoRecommend();
     });
+
 });
 
 
