@@ -263,8 +263,8 @@ $(function () {
         } else {
             var $block = $("div.re-color-zone div.re-cblock:nth-child(" + position + ")");
             $block.css("background-color", "rgb(" + color.r + "," + color.g + "," + color.b + ")");
-            if(position === 4) {
-                if(color.r > 33) {
+            if (position === 4) {
+                if (color.r > 33) {
                     $block.find("label").css("color", "#414141");
                 } else {
                     $block.find("label").css("color", "white");
@@ -290,7 +290,7 @@ $(function () {
     $("div.content-tips li").each(function (index) {
         $(this).attr("pos", index + 1);
         $(this).click(function () {
-            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos")  + ")");
+            var $sec_content = $("div.content-zone section.content:nth-child(" + $(this).attr("pos") + ")");
             if ($sec_content) {
                 var top = $sec_content[0].offsetTop;
                 $("html, body").animate({scrollTop: top + 200}, 1000);
@@ -430,17 +430,18 @@ $(function () {
         });
     });
     /*******************************推荐色导出 **********************/
-    function addCBlockLabel(){
+    function addCBlockLabel() {
         $("div#re-color-list div.re-cblock label.hex-label").remove();
 
         //准备色彩块的HEX label
-        $("div#re-color-list div.re-cblock").each(function(){
+        $("div#re-color-list div.re-cblock").each(function () {
             var coStr = $(this).css("background-color");
             var color = splitColor(coStr);
             var hex = "#" + color.r.toString(16) + color.g.toString(16) + color.b.toString(16);
-            $(this).append("<label class='hex-label'>"+ hex +"</label>");
+            $(this).append("<label class='hex-label'>" + hex + "</label>");
         });
     }
+
     function downloadAutoRecommend() {
         addCBlockLabel();
         html2canvas(document.getElementById("re-color-list"), {
@@ -460,10 +461,59 @@ $(function () {
             }
         });
     }
-      $(".download-toolbar").click(function(){
-            downloadAutoRecommend();
-    });
 
+    $(".download-toolbar").click(function () {
+        downloadAutoRecommend();
+    });
+    /*********************
+     * 上传图片，拖放效果
+     *******************/
+    var imgContainer = document.getElementById("imgContainer");
+    //若允许被放置元素，必须阻止其默认的处理方式
+    imgContainer.ondragover = function (e) {
+        e.preventDefault();
+    };
+    //监听拖拽的事件：设置 允许拖拽
+    imgContainer.ondrop = function (e) {
+        e.preventDefault();
+        //创建file对象
+        var f = e.dataTransfer.files[0];
+        //创建fileReader 来读取信息
+        var fileReader = new FileReader();
+        //通过fileReader 来读取数据
+        fileReader.readAsDataURL(f);
+        //通过fileReaderl 来监听它的的事件
+        fileReader.onload = function (e) {
+            //在盒子中写入一个img标签，并将其读到的资源赋给src实现预览
+            imgContainer.innerHTML = "<img src='" + fileReader.result + "' width='300px' height='300px'  id='upload_img'/>";
+        }
+    };
+    $("div#recognize_btn").click(function () {
+        var formData = document.querySelector("#upload_img");
+        var excluded = ['rgb(255, 255, 255)', 'rgb(0,0,0)', 'rgb(0,1,0)', 'rgb(1,0,0)', 'rgb(0,0,1)'];
+        for (var i = 1; i < 10; ++i) {
+            var rgb1 = 'rgb(' + (255 - i) + ',' + 255 + ',' + 255 + ')';
+            var rgb2 = 'rgb(' + 255 + ',' + (255 - i) + ',' + 255 + ')';
+            var rgb3 = 'rgb(' + 255 + ',' + 255 + ',' + (255 - i) + ')';
+            var rgb4 = 'rgb(' + (255 - i) + ',' + (255 - i) + ',' + (255 - i) + ')';
+
+            excluded.push(rgb1);
+            excluded.push(rgb2);
+            excluded.push(rgb3);
+            excluded.push(rgb4);
+        }
+        RGBaster.colors(formData, {
+            paletteSize: 6,
+            exclude: excluded,
+            success: function (payload) {
+                var li_arr = document.querySelectorAll("div.recognize-color ul li");
+                for (var i = 0; i < payload.palette.length; ++i) {
+                    li_arr[i].style.backgroundColor = payload.palette[i];
+                }
+            }
+        });
+        $(this).attr("id", "upload_btn").text("上传");
+    });
 });
 
 

@@ -453,9 +453,53 @@ header.recommend nav{
 header.recommend div.header-user-entrance {
     font-size: 1.85rem;
 }
-
-
-
+header.recommend nav.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10086;
+}
+svg.upload-btn {
+    position: absolute;
+    top: 0;
+    left: 12rem;
+}
+svg.upload-btn:hover{
+    fill: #afafaf;
+}
+/***********************************
+上传模态框
+ *********************************/
+div#uploadModal div.modal-content{
+    width: 96%;
+}
+div#imgContainer {
+    height: 30rem;
+    width: 100%;
+    border: 2px dotted #eeeeee;
+    margin-bottom: 1rem;
+    color: #eeeeee;
+    font-size: 2rem;
+    font-weight: 600;
+}
+div#imgContainer svg {
+    fill: #eee;
+    width: 10rem;
+    height: 10rem;
+    display: block;
+    margin: 0 auto;
+}
+div.recognize-color ul {
+    padding: 0;
+}
+div.recognize-color ul li{
+    list-style: none;
+    display: inline-block;
+    width: 3.6rem;
+    height: 3.6rem;
+    margin-left: 0.5rem;
+    border: 1px solid #eeeeee;
+}
 
 
 
