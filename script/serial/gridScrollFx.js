@@ -85,7 +85,7 @@
 		this.el = el;
 		this.anchor = el.querySelector( 'a' );
 		this.image = el.querySelector( 'img' );
-		this.desc = el.querySelector( 'h3' );
+		this.desc = el.querySelector( 'section' );
 	}
     //原型类，增加addCurtain方法，也就是加上颜色幕布，排除白色幕布
 	GridItem.prototype.addCurtain = function() {
@@ -163,7 +163,7 @@
 
 			// initialize masonry
 			new Masonry( self.el, {
-				itemSelector : 'li',
+				itemSelector : '#grid>li',
 				isFitWidth : true,
 				transitionDuration : 0
 			} );

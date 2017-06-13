@@ -129,7 +129,7 @@ div.grid-wrap {
 }
 
 /* Title */
-.grid li h3 {
+.grid li section {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -147,6 +147,7 @@ div.grid-wrap {
 	transition: transform 0.2s, color 0.2s;
 }
 
+
 /* Pseudo element for hover effect */
 .grid li > a::before {
 	position: absolute;
@@ -162,7 +163,7 @@ div.grid-wrap {
 }
 
 /* Hover effects */
-.grid li.shown:hover h3 {
+.grid li.shown:hover section {
 	color: #2E3444;
 	-webkit-transform: translate3d(0,-30px,0);
 	transform: translate3d(0,-30px,0);
@@ -251,12 +252,12 @@ div.grid-wrap {
 
 /* Hide image and title and show at half time */
 .js .grid li img,
-.js .grid li h3 {
+.js .grid li section {
 	visibility: hidden;
 }
 
 .grid li.animate img,
-.grid li.animate h3 {
+.grid li.animate section {
 	-webkit-animation: showMe 1.5s step-end forwards;
 	animation: showMe 1.5s step-end forwards;
 }
@@ -272,7 +273,7 @@ div.grid-wrap {
 }
 
 .grid li.shown img,
-.grid li.shown h3 {
+.grid li.shown section {
 	visibility: visible;
 }
 
@@ -500,14 +501,24 @@ div.recognize-color ul li{
     margin-left: 0.5rem;
     border: 1px solid #eeeeee;
 }
+/***********************图片上的色彩系列***********************/
+ul.pic-color-list{
+    padding: 0;
+    display: inline-block;
+}
+ul.pic-color-list li{
+    list-style: none;
+    display: inline-block;
+    width:  2rem;
+    height: 2rem;
+    margin-right: 0.625rem;
+    border: 1px solid #eeeeee;
+}
 
 
-
-
-
-
-
-
+.grid li div {
+	display: inline-block;
+}
 
 
 
