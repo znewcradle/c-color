@@ -294,5 +294,32 @@
     <script src="script/color-game.js"></script>
     <!-- 引入main.js -->
     <script src="script/main.js"></script>
+<script>
+    $("#login_btn").click(function () {
+        var name = $("input#login-name").val();
+        var pass = $("input#login-pwd").val();
+        login(name, pass);
+    });
+    $("#register_btn").click(function () {
+        var name = $("#register-name").val();
+        var password = $("#register-pwd").val();
+        var repass = $("#register-re-pwd").val();
+        if (name && password && password === repass) {
+            $.ajax({
+                'url': 'http://localhost:3000/register',
+                'method': 'POST',
+                'data': {
+                    username: name,
+                    password: password,
+                    repassword: repass
+                },
+                'success': function (data) {
+                    login(name, password);
+                    $("#registerModal").modal('hide');
+                }
+            })
+        }
+    });
+</script>
     </body>
 </html>

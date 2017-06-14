@@ -2,6 +2,11 @@
  * Created by Xu on 2017/5/19.
  */
 $(function () {
+    //检测是否登陆
+    if (localStorage.getItem("userid")) {
+        $("div.header-user-entrance").hide();
+        $("div.header-user-entrance.after-login").show().prop('hidden', false);
+    }
     //整体的动态呈现效果
     $("nav#nav").addClass("animated fadeInDown");
     $("div#main").addClass("animated fadeInUp");
@@ -469,25 +474,31 @@ $(function () {
      * 上传图片，拖放效果
      *******************/
     var imgContainer = document.getElementById("imgContainer");
-    //若允许被放置元素，必须阻止其默认的处理方式
-    imgContainer.ondragover = function (e) {
-        e.preventDefault();
-    };
-    //监听拖拽的事件：设置 允许拖拽
-    imgContainer.ondrop = function (e) {
-        e.preventDefault();
-        //创建file对象
-        var f = e.dataTransfer.files[0];
-        //创建fileReader 来读取信息
-        var fileReader = new FileReader();
-        //通过fileReader 来读取数据
-        fileReader.readAsDataURL(f);
-        //通过fileReaderl 来监听它的的事件
-        fileReader.onload = function (e) {
-            //在盒子中写入一个img标签，并将其读到的资源赋给src实现预览
-            imgContainer.innerHTML = "<img src='" + fileReader.result + "' width='300px' height='300px'  id='upload_img'/>";
-        }
-    };
+    var result_uri;
+    var color_list;
+
+    if (imgContainer) {
+        //若允许被放置元素，必须阻止其默认的处理方式
+        imgContainer.ondragover = function (e) {
+            e.preventDefault();
+        };
+        //监听拖拽的事件：设置 允许拖拽
+        imgContainer.ondrop = function (e) {
+            e.preventDefault();
+            //创建file对象
+            var f = e.dataTransfer.files[0];
+            //创建fileReader 来读取信息
+            var fileReader = new FileReader();
+            //通过fileReader 来读取数据
+            fileReader.readAsDataURL(f);
+            //通过fileReaderl 来监听它的的事件
+            fileReader.onload = function (e) {
+                result_uri = fileReader.result;
+                //在盒子中写入一个img标签，并将其读到的资源赋给src实现预览
+                imgContainer.innerHTML = "<img src='" + result_uri + "' width='300px' height='300px'  id='upload_img'/>";
+            }
+        };
+    }
     $("div#recognize_btn").click(function () {
         var formData = document.querySelector("#upload_img");
         var excluded = ['rgb(255, 255, 255)', 'rgb(0,0,0)', 'rgb(0,1,0)', 'rgb(1,0,0)', 'rgb(0,0,1)'];
@@ -502,19 +513,65 @@ $(function () {
             excluded.push(rgb3);
             excluded.push(rgb4);
         }
-        RGBaster.colors(formData, {
-            paletteSize: 6,
-            exclude: excluded,
-            success: function (payload) {
-                var li_arr = document.querySelectorAll("div.recognize-color ul li");
-                for (var i = 0; i < payload.palette.length; ++i) {
-                    li_arr[i].style.backgroundColor = payload.palette[i];
+        if (formData) {
+            RGBaster.colors(formData, {
+                paletteSize: 6,
+                exclude: excluded,
+                success: function (payload) {
+                    var li_arr = document.querySelectorAll("div.recognize-color ul li");
+                    color_list = payload.palette;
+                    for (var i = 0; i < payload.palette.length; ++i) {
+                        li_arr[i].style.backgroundColor = payload.palette[i];
+                    }
                 }
+            });
+        }
+        $(this).hide();
+        $("#upload_btn").show();
+    });
+    //上传
+    $("#upload_btn").click(function(){
+        var colors = JSON.stringify(color_list);
+        $.ajax({
+            'url': 'http://localhost:3000/upload',
+            'method': 'POST',
+            'data': {
+                'creatorid': 1,
+                'uri': result_uri,
+                'colors': colors
+            },
+            'success': function(data){
+                $("#upload_btn").hide();
+                $("#recognize_btn").show();
+                $("#uploadModal").modal('hide');
+                location.reload();
             }
         });
-        $(this).attr("id", "upload_btn").text("上传");
+    });
+    //注销
+    $("span.glyphicon.glyphicon-log-out.log-out").click(function () {
+        localStorage.removeItem("userid");
+        location.reload();
     });
 });
+
+function login(name, pass) {
+    $.ajax({
+        'url': 'http://localhost:3000/login',
+        'method': 'POST',
+        'data': {
+            username: name,
+            password: pass
+        },
+        'success': function (data) {
+            localStorage.setItem("userid", data.userid);
+            console.log(data.userid);
+            $("#loginModal").modal('hide');
+            $("div.header-user-entrance").hide();
+            $("div.header-user-entrance.after-login").show().prop('hidden', false);
+        }
+    });
+}
 
 
 

@@ -14,6 +14,26 @@
     <link rel="stylesheet" type="text/css" href="style/serial/normalize.css"/>
     <!--<link rel="stylesheet" type="text/css" href="style/serial/demo.css"/>-->
     <link rel="stylesheet" type="text/css" href="style/serial.css"/>
+    <script src="script/jquery-3.2.1.min.js"></script>
+    <script src="script/vue.min.js"></script>
+    <script>
+        $.ajax({
+            'url': 'http://localhost:3000/getPic',
+            'method': 'post',
+            'data': {
+                userid: 1
+            },
+            'success': function(data){
+                var img_obj = JSON.parse(data);
+                var vueImg = new Vue({
+                    el: '#grid',
+                    data: {
+                        images: img_obj
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <header class="recommend">
@@ -62,360 +82,378 @@
 </header>
 <div class="grid-wrap">
     <ul class="grid swipe-right" id="grid">
-        <li>
+        <li v-for="img in images">
             <a>
-                <img src="img/1.jpg" alt="img01">
+                <img v-bind:src="img.imageurl" alt="img01">
                 <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <ul class="pic-color-list" >
+                        <template v-for="color in img.colors">
+                            <!--<li v-bind:style="background-color:color"></li>-->
+                        </template>
+
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
                     </ul>
                 </section>
             </a>
         </li>
-        <li>
-            <a>
-                <img src="img/2.jpg" alt="img02">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/3.jpg" alt="img03">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li><a>
-            <img src="img/4.jpg" alt="img04">
-            <section>
-                <ul class="pic-color-list">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </section>
-        </a>
-        </li>
-        <li><a>
-            <img src="img/5.jpg" alt="img05">
-            <section>
-                <ul class="pic-color-list">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </section>
-        </a>
-        </li>
-        <li><a>
-            <img src="img/6.jpg" alt="img06">
-            <section>
-                <ul class="pic-color-list">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </section>
-        </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/7.jpg" alt="img07">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a></li>
-        <li>
-            <a>
-                <img src="img/8.jpg" alt="img08">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/9.jpg" alt="img09">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/10.jpg" alt="img10">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/11.jpg" alt="img11">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/12.jpg" alt="img12">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-        <li>
-            <a>
-                <img src="img/13.jpg" alt="img13">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/14.jpg" alt="img14">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/15.jpg" alt="img01">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/17.jpg" alt="img02">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/18.jpg" alt="img03">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/19.jpg" alt="img04">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/5.jpg" alt="img05">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/6.jpg" alt="img06">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/7.jpg" alt="img07">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/8.jpg" alt="img08">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/9.jpg" alt="img09">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
-        <li>
-            <a>
-                <img src="img/10.jpg" alt="img10">
-                <section>
-                    <ul class="pic-color-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </a>
-        </li>
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/1.jpg" alt="img01">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/2.jpg" alt="img02">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/3.jpg" alt="img03">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li><a>-->
+            <!--<img src="img/4.jpg" alt="img04">-->
+            <!--<section>-->
+                <!--<ul class="pic-color-list">-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                <!--</ul>-->
+            <!--</section>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li><a>-->
+            <!--<img src="img/5.jpg" alt="img05">-->
+            <!--<section>-->
+                <!--<ul class="pic-color-list">-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                <!--</ul>-->
+            <!--</section>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li><a>-->
+            <!--<img src="img/6.jpg" alt="img06">-->
+            <!--<section>-->
+                <!--<ul class="pic-color-list">-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                <!--</ul>-->
+            <!--</section>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/7.jpg" alt="img07">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a></li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/8.jpg" alt="img08">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/9.jpg" alt="img09">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/10.jpg" alt="img10">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/11.jpg" alt="img11">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/12.jpg" alt="img12">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/13.jpg" alt="img13">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/14.jpg" alt="img14">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/15.jpg" alt="img01">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/17.jpg" alt="img02">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/18.jpg" alt="img03">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/19.jpg" alt="img04">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/5.jpg" alt="img05">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/6.jpg" alt="img06">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/7.jpg" alt="img07">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/8.jpg" alt="img08">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/9.jpg" alt="img09">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a>-->
+                <!--<img src="img/10.jpg" alt="img10">-->
+                <!--<section>-->
+                    <!--<ul class="pic-color-list">-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                        <!--<li></li>-->
+                    <!--</ul>-->
+                <!--</section>-->
+            <!--</a>-->
+        <!--</li>-->
     </ul>
 </div>
 
@@ -520,6 +558,7 @@
             </div>
             <div class="modal-footer">
                 <div class="modal-btn-footer" id="recognize_btn">识别</div>
+                <div class="modal-btn-footer" id="upload_btn" hidden>上传</div>
             </div>
         </div><!-- END: /.modal-content -->
     </div><!-- END:  login-modal -->
@@ -550,6 +589,33 @@
 <script>
     new GridScrollFx(document.getElementById('grid'), {
         viewportFactor: 0.4
+    });
+</script>
+<script>
+    $("#login_btn").click(function () {
+        var name = $("input#login-name").val();
+        var pass = $("input#login-pwd").val();
+        login(name, pass);
+    });
+    $("#register_btn").click(function () {
+        var name = $("#register-name").val();
+        var password = $("#register-pwd").val();
+        var repass = $("#register-re-pwd").val();
+        if (name && password && password === repass) {
+            $.ajax({
+                'url': 'http://localhost:3000/register',
+                'method': 'POST',
+                'data': {
+                    username: name,
+                    password: password,
+                    repassword: repass
+                },
+                'success': function (data) {
+                    login(name, password);
+                    $("#registerModal").modal('hide');
+                }
+            })
+        }
     });
 </script>
 </body>
